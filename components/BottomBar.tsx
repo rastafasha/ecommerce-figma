@@ -12,31 +12,31 @@ export const BottomBar = () => {
     <View style={styles.bottomBar}>
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.HOME)}
+        onPress={() => router.push(ROUTES.HOME as any)}
       >
         <Ionicons name="home-outline" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.WISHLIST)}
+        onPress={() => router.push(ROUTES.WISHLIST as any)}
       >
         <Ionicons name="heart-outline" size={24} color="#0066FF" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.DOCUMENTS)}
+        onPress={() => router.push(ROUTES.DOCUMENTS as any)}
       >
         <Ionicons name="document-text-outline" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.CART)}
+        onPress={() => router.push(ROUTES.CART as any)}
       >
         <Ionicons name="cart-outline" size={24} color="#0066FF" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.PROFILE)}
+        onPress={() => router.push(ROUTES.PROFILE as any)}
       >
         <Ionicons name="person-outline" size={24} color="#000" />
       </TouchableOpacity>
