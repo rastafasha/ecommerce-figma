@@ -5,4 +5,5 @@ export const ROUTES = {
   CART: '/cart',
   PROFILE: '/profile',
   SEARCH: '/search',
+  PAYMENT: '/payment/payment',
 };

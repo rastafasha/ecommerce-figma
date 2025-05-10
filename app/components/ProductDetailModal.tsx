@@ -47,8 +47,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </TouchableOpacity>
           </View>
 
-          {/* Drag indicator */}
-          <View style={styles.dragIndicator} />
+          
 
           {/* Image carousel */}
           <ScrollView
@@ -66,7 +65,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               />
             ))}
           </ScrollView>
-          
+          {/* Drag indicator */}
+          <View style={styles.dragIndicator} />
           <ScrollView>
 
             {/* Price and share */}

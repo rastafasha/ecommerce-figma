@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import {
-    Image,
-    Modal,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
-} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import cartModalStyles from './styles/cartModalStyles';
-
 import { CartItem } from '@/app/interface/cartInterfase';
 import { sampleCartItems, sampleWishlistItems } from '@/app/mock/cartSample';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import {
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ROUTES } from '../routes';
+import cartModalStyles from './styles/cartModalStyles';
 
 
 interface CartModalProps {
@@ -23,7 +24,7 @@ interface CartModalProps {
 
 export const CartModal: React.FC<CartModalProps> = ({ visible, onClose }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>(sampleCartItems);
-
+  const router = useRouter();
   const incrementQuantity = (id: string) => {
     setCartItems(prev =>
       prev.map(item =>
@@ -47,7 +48,11 @@ export const CartModal: React.FC<CartModalProps> = ({ visible, onClose }) => {
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onClose}>
+    <Modal visible={visible} 
+    animationType="slide" 
+    transparent={true} 
+    onRequestClose={onClose}
+    >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           {/* Header */}
@@ -128,7 +133,7 @@ export const CartModal: React.FC<CartModalProps> = ({ visible, onClose }) => {
           {/* Total and Checkout */}
           <View style={styles.checkoutContainer}>
             <Text style={styles.totalText}>Total ${totalPrice.toFixed(2)}</Text>
-            <TouchableOpacity style={styles.checkoutButton}>
+<TouchableOpacity style={styles.checkoutButton} onPress={() => { onClose(); router.push(ROUTES.PAYMENT as any); }}>
               <Text style={styles.checkoutButtonText}>Checkout</Text>
             </TouchableOpacity>
           </View>

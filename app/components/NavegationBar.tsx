@@ -38,14 +38,14 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ activeTab, onTabPr
 
       <TouchableOpacity
         style={styles.bottomBarItem}
-        onPress={() => router.push(ROUTES.DOCUMENTS as any)}
+        onPress={() => router.push(ROUTES.PAYMENT as any)}
       >
         <Ionicons
           name="document-text-outline"
           size={24}
           color={activeTab === 'Cart' ? '#0066FF' : '#000'}
         />
-        <Text style={[styles.label, activeTab === 'Cart' && { color: '#0066FF' }]}>Document</Text>
+        <Text style={[styles.label, activeTab === 'Cart' && { color: '#0066FF' }]}>Payment</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
