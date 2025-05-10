@@ -1,12 +1,12 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationBar } from '../components/NavegationBar';
@@ -28,7 +28,7 @@ export const Payment: React.FC = () => {
     const totalPrice = sampleItems.reduce((sum, item) => sum + item.price * item.quantity, 0) + (shippingOption === 'express' ? 12 : 0);
 
   return (
-    <View style={paymentStyles.container}>
+    <View style={{ flex: 1 }}>
          {/* Header */}
               <View style={paymentStyles.header}>
                     <TouchableOpacity onPress={() => router.back()} style={paymentStyles.backButton}>
@@ -37,7 +37,7 @@ export const Payment: React.FC = () => {
                     <Text style={paymentStyles.headerTitle}>Payment</Text>
                     
                   </View>
-          <ScrollView>
+          <ScrollView style={paymentStyles.container}>
 
             {/* Shipping Address */}
             <View style={paymentStyles.section}>

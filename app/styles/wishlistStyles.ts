@@ -15,11 +15,30 @@ const wishlistStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  backButton: {
+    paddingRight: 10,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  
   recentlyViewedContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 12,
+    paddingHorizontal:16
   },
   sectionTitle: {
     fontSize: 18,

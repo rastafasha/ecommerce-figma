@@ -206,7 +206,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
 
  
   return (
-    <SafeAreaView style={[styles.container, ]}>
+    <SafeAreaView style={{ flex: 1 }} >
       <StatusBar barStyle="dark-content" />
       
       {/* Header */}
