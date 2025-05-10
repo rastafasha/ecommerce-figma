@@ -1,14 +1,14 @@
 export const categoryOptions = [
-    { id: 'dresses', name: 'Dresses', image: require('../assets/images/products/1.png') },
-    { id: 'pants', name: 'Pants', image: require('../assets/images/products/1.png') },
-    { id: 'skirts', name: 'Skirts', image: require('../assets/images/products/1.png') },
-    { id: 'shorts', name: 'Shorts', image: require('../assets/images/products/1.png') },
-    { id: 'jackets', name: 'Jackets', image: require('../assets/images/products/1.png') },
-    { id: 'hoodies', name: 'Hoodies', image: require('../assets/images/products/1.png') },
-    { id: 'shirts', name: 'Shirts', image: require('../assets/images/products/1.png') },
-    { id: 'polo', name: 'Polo', image: require('../assets/images/products/1.png') },
-    { id: 'tshirts', name: 'T-shirts', image: require('../assets/images/products/1.png') },
-    { id: 'tunics', name: 'Tunics', image: require('../assets/images/products/1.png') },
+    { id: 'dresses', name: 'Dresses', image: require('../../assets/images/products/1.png') },
+    { id: 'pants', name: 'Pants', image: require('../../assets/images/products/1.png') },
+    { id: 'skirts', name: 'Skirts', image: require('../../assets/images/products/1.png') },
+    { id: 'shorts', name: 'Shorts', image: require('../../assets/images/products/1.png') },
+    { id: 'jackets', name: 'Jackets', image: require('../../assets/images/products/1.png') },
+    { id: 'hoodies', name: 'Hoodies', image: require('../../assets/images/products/1.png') },
+    { id: 'shirts', name: 'Shirts', image: require('../../assets/images/products/1.png') },
+    { id: 'polo', name: 'Polo', image: require('../../assets/images/products/1.png') },
+    { id: 'tshirts', name: 'T-shirts', image: require('../../assets/images/products/1.png') },
+    { id: 'tunics', name: 'Tunics', image: require('../../assets/images/products/1.png') },
   ];
 
   export const colorOptions = [

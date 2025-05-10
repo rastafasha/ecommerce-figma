@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
-    Image,
-    Modal,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  Modal,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import paymentModalStyles from './styles/paymentModalStyles';
@@ -18,14 +18,14 @@ interface PaymentModalProps {
 const sampleItems = [
   {
     id: '1',
-    image: require('../assets/images/products/1.png'),
+    image: require('../../assets/images/products/1.png'),
     description: 'Lorem ipsum dolor sit amet consectetur.',
     quantity: 1,
     price: 17.00,
   },
   {
     id: '2',
-    image: require('../assets/images/products/2.png'),
+    image: require('../../assets/images/products/2.png'),
     description: 'Lorem ipsum dolor sit amet consectetur.',
     quantity: 1,
     price: 17.00,
