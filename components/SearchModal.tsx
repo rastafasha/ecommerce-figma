@@ -27,19 +27,19 @@ const sampleRecommendations = ['Skirt', 'Accessories', 'Black T-Shirt', 'Jeans',
 const sampleDiscover = [
   {
     id: '1',
-    image: require('../../assets/images/products/1.png'),
+    image: require('../assets/images/products/1.png'),
     description: 'Lorem ipsum dolor sit amet consectetur.',
     price: '$125,00',
   },
   {
     id: '2',
-    image: require('../../assets/images/products/2.png'),
+    image: require('../assets/images/products/2.png'),
     description: 'Lorem ipsum dolor sit amet consectetur.',
     price: '$32,00',
   },
   {
     id: '3',
-    image: require('../../assets/images/products/3.png'),
+    image: require('../assets/images/products/3.png'),
     description: 'Lorem ipsum dolor sit amet consectetur.',
     price: '$21,00',
   },

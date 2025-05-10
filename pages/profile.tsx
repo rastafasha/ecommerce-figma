@@ -1,29 +1,29 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    FlatList,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NavigationBar } from './components/NavegationBar';
-import { SettingsModal } from './components/SettingsModal';
+import profileStyles from '../app/styles/profileStyles';
+import { NavigationBar } from '../components/NavegationBar';
+import { SettingsModal } from '../components/SettingsModal';
 import {
-    categories,
-    flashSaleItems,
-    justForYou,
-    mostPopular,
-    newItems,
-    ordersTabs,
-    recentlyViewed,
-    stories,
-    topProducts
-} from './mock/profile';
-import profileStyles from './styles/profileStyles';
+  categories,
+  flashSaleItems,
+  justForYou,
+  mostPopular,
+  newItems,
+  ordersTabs,
+  recentlyViewed,
+  stories,
+  topProducts
+} from '../mock/profile';
 
 
 const Profile = () => {
@@ -114,7 +114,7 @@ const Profile = () => {
         <View style={styles.header}>
           <TouchableOpacity style={styles.profileImageContainer}>
             <Image
-              source={require('../assets/images/profile/profile.png')}
+              source={require('../../assets/images/profile/profile.png')}
               style={styles.profileImage}
             />
           </TouchableOpacity>

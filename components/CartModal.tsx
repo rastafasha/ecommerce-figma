@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import {
-    Image,
-    Modal,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import cartModalStyles from './styles/cartModalStyles';
 
 import { CartItem } from '@/app/interface/cartInterfase';
-import { sampleCartItems, sampleWishlistItems } from '@/app/mock/cartSample';
+import { sampleCartItems, sampleWishlistItems } from '@/mock/cartSample';
 
 
 interface CartModalProps {

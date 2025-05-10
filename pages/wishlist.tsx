@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import {
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NavigationBar } from './components/NavegationBar';
-import { recentlyViewed, wishlistItems } from './mock/wishlist';
-import wishlistStyles from './styles/wishlistStyles';
+import wishlistStyles from '../app/styles/wishlistStyles';
+import { NavigationBar } from '../components/NavegationBar';
+import { recentlyViewed, wishlistItems } from '../mock/wishlist';
 
 const Wishlist = () => {
   

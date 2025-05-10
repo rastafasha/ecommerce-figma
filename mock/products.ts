@@ -1,9 +1,9 @@
-import { Product } from "@/app/interface/Interface";
+import { Product } from "../interface/Interface";
 
 export const products20Percent: Product[] = [
   {
       id: '1',
-      image: require('../../assets/images/products/1.png'),
+      image: require('../assets/images/products/1.png'),
       title: 'OPPOF19 Perfume Collection',
       discountedPrice: 16.00,
       originalPrice: 20.00,
@@ -28,7 +28,7 @@ export const products20Percent: Product[] = [
   },
   {
       id: '2',
-      image: require('../../assets/images/products/2.png'),
+      image: require('../assets/images/products/2.png'),
       title: 'Hyaluronic Acid Serum',
       discountedPrice: 16.00,
       originalPrice: 20.00,
@@ -53,7 +53,7 @@ export const products20Percent: Product[] = [
   },
   {
       id: '3',
-      image: require('../../assets/images/products/3.png'),
+      image: require('../assets/images/products/3.png'),
       title: 'Women\'s Solid Casual Dress',
       discountedPrice: 16.00,
       originalPrice: 20.00,
@@ -78,7 +78,7 @@ export const products20Percent: Product[] = [
   },
   {
       id: '4',
-      image: require('../../assets/images/products/4.png'),
+      image: require('../assets/images/products/4.png'),
       title: 'Women\'s Stylish Footwear',
       discountedPrice: 16.00,
       originalPrice: 20.00,
@@ -106,7 +106,7 @@ export const products20Percent: Product[] = [
 export const shoeProducts: Product[] = [
   {
       id: '5',
-      image: require('../../assets/images/products/1.png'),
+      image: require('../assets/images/products/1.png'),
       title: 'Sporty Running Shoes',
       discountedPrice: 16.00,
       originalPrice: 20.00,
@@ -131,7 +131,7 @@ export const shoeProducts: Product[] = [
   },
   {
       id: '6',
-      image: require('../../assets/images/products/2.png'),
+      image: require('../assets/images/products/2.png'),
       title: 'Casual Sneakers',
       discountedPrice: 16.00,
       originalPrice: 20.00,

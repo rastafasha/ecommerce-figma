@@ -1,19 +1,20 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // import NavigationBar from '../components/NavegationBar';
-import { PaymentModal } from './components/PaymentModal';
-import { CartItem } from './interface/cartInterfase'; // interface file missing, adjust as needed
-import { sampleCartItems, sampleWishlistItems } from './mock/cartSample'; // mock data missing, adjust as needed
-import cartStyles from './styles/cartStyles';
+import { ROUTES } from '../app/routes';
+import cartStyles from '../app/styles/cartStyles';
+import { PaymentModal } from '../components/PaymentModal';
+import { CartItem } from '../interface/cartInterfase'; // interface file missing, adjust as needed
+import { sampleCartItems, sampleWishlistItems } from '../mock/cartSample'; // mock data missing, adjust as needed
 
 const CartPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>(sampleCartItems);
@@ -136,7 +137,11 @@ const CartPage: React.FC = () => {
       {/* Total and Checkout */}
       <View style={styles.checkoutContainer}>
         <Text style={styles.totalText}>Total ${totalPrice.toFixed(2)}</Text>
-        <TouchableOpacity style={styles.checkoutButton} onPress={openPaymentModal}>
+        const handleCheckout = () => {
+          router.push(ROUTES.PAYMENT);
+        };
+
+        <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
           <Text style={styles.checkoutButtonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
