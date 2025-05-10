@@ -1,18 +1,18 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // import NavigationBar from '../components/NavegationBar';
-import { PaymentModal } from '../components/PaymentModal';
-import { CartItem } from '../interface/cartInterfase'; // interface file missing, adjust as needed
-import { sampleCartItems, sampleWishlistItems } from '../mock/cartSample'; // mock data missing, adjust as needed
+import { PaymentModal } from './components/PaymentModal';
+import { CartItem } from './interface/cartInterfase'; // interface file missing, adjust as needed
+import { sampleCartItems, sampleWishlistItems } from './mock/cartSample'; // mock data missing, adjust as needed
 import cartStyles from './styles/cartStyles';
 
 const CartPage: React.FC = () => {

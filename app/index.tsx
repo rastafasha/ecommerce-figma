@@ -1,11 +1,11 @@
 // Index.tsx
 
-import { CartModal } from '../components/CartModal';
-import { DiscountTabs } from '../components/DiscountTabs';
-import { FilterModal } from '../components/FilterModal';
-import { SaleSections } from '../components/SaleSections';
+import { CartModal } from './components/CartModal';
+import { DiscountTabs } from './components/DiscountTabs';
+import { FilterModal } from './components/FilterModal';
+import { SaleSections } from './components/SaleSections';
 
-import { products20Percent, shoeProducts } from '@/mock/products';
+import { products20Percent, shoeProducts } from '@/app/mock/products';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -21,14 +21,14 @@ import {
   View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Header } from '../components/Header';
-import { NavigationBar } from '../components/NavegationBar';
-import { ProductDetailModal } from '../components/ProductDetailModal';
-import { ProductGrid } from '../components/ProductGrid';
-import { SearchModal } from '../components/SearchModal';
-import { TimerDisplay } from '../components/TimerDisplay';
-import { FilterState, Product } from '../interface/Interface';
-import { categoryOptions, colorOptions, sizeOptions, sortOptions } from '../mock/Options';
+import { Header } from './components/Header';
+import { NavigationBar } from './components/NavegationBar';
+import { ProductDetailModal } from './components/ProductDetailModal';
+import { ProductGrid } from './components/ProductGrid';
+import { SearchModal } from './components/SearchModal';
+import { TimerDisplay } from './components/TimerDisplay';
+import { FilterState, Product } from './interface/Interface';
+import { categoryOptions, colorOptions, sizeOptions, sortOptions } from './mock/Options';
 import indexStyles from './styles/indexStyles';
 
 

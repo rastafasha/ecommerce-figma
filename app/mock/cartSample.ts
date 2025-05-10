@@ -1,4 +1,4 @@
-import { CartItem, WishlistItem } from "@/interface/cartInterfase";
+import { CartItem, WishlistItem } from "@/app/interface/cartInterfase";
 export const sampleCartItems: CartItem[] = [
   {
     id: '1',

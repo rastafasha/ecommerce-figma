@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ROUTES } from '../app/routes';
+import { ROUTES } from '../routes';
 interface NavigationBarProps {
   activeTab: string;
   onTabPress: (tabName: string) => void;

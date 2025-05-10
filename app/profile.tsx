@@ -1,28 +1,28 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    FlatList,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NavigationBar } from '../components/NavegationBar';
-import { SettingsModal } from '../components/SettingsModal';
+import { NavigationBar } from './components/NavegationBar';
+import { SettingsModal } from './components/SettingsModal';
 import {
-  categories,
-  flashSaleItems,
-  justForYou,
-  mostPopular,
-  newItems,
-  ordersTabs,
-  recentlyViewed,
-  stories,
-  topProducts
-} from '../mock/profile';
+    categories,
+    flashSaleItems,
+    justForYou,
+    mostPopular,
+    newItems,
+    ordersTabs,
+    recentlyViewed,
+    stories,
+    topProducts
+} from './mock/profile';
 import profileStyles from './styles/profileStyles';
 
 

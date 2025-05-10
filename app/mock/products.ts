@@ -1,4 +1,4 @@
-import { Product } from "@/interface/Interface";
+import { Product } from "@/app/interface/Interface";
 
 export const products20Percent: Product[] = [
   {
