@@ -1,4 +1,3 @@
-
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
@@ -11,20 +10,21 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // import NavigationBar from '../components/NavegationBar';
-import { CartItem } from '@/interface/cartInterfase';
-import { sampleCartItems, sampleWishlistItems } from '@/mock/cartSample';
+import { PaymentModal } from '../components/PaymentModal';
+import { CartItem } from '../interface/cartInterfase'; // interface file missing, adjust as needed
+import { sampleCartItems, sampleWishlistItems } from '../mock/cartSample'; // mock data missing, adjust as needed
 import cartStyles from './styles/cartStyles';
-
 
 const CartPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>(sampleCartItems);
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState('Wishlist');
-    
-      const handleTabPress = (tabName: string) => {
-        setActiveTab(tabName);
-      };
+  const [paymentModalVisible, setPaymentModalVisible] = useState(false);
+
+  const handleTabPress = (tabName: string) => {
+    setActiveTab(tabName);
+  };
 
   const incrementQuantity = (id: string) => {
     setCartItems(prev =>
@@ -47,6 +47,14 @@ const CartPage: React.FC = () => {
   };
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const openPaymentModal = () => {
+    setPaymentModalVisible(true);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -128,10 +136,13 @@ const CartPage: React.FC = () => {
       {/* Total and Checkout */}
       <View style={styles.checkoutContainer}>
         <Text style={styles.totalText}>Total ${totalPrice.toFixed(2)}</Text>
-        <TouchableOpacity style={styles.checkoutButton}>
+        <TouchableOpacity style={styles.checkoutButton} onPress={openPaymentModal}>
           <Text style={styles.checkoutButtonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
+
+      <PaymentModal visible={paymentModalVisible} onClose={closePaymentModal} />
+
       {/* <NavigationBar activeTab={activeTab} onTabPress={handleTabPress} /> */}
     </View>
   );
