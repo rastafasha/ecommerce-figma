@@ -12,51 +12,9 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import productModalStyles from './styles/productModalStyles';
 
+import { Product } from '../interface/Interface';
+
 const { width, height } = Dimensions.get('window');
-
-interface Variation {
-  id: string;
-  label: string;
-}
-
-interface SpecificationTag {
-  id: string;
-  label: string;
-  type?: 'pink' | 'blue';
-}
-
-interface DeliveryOption {
-  id: string;
-  name: string;
-  days: string;
-  price: string;
-}
-
-interface Review {
-  id: string;
-  userName: string;
-  userImage: any;
-  rating: number;
-  text: string;
-}
-
-interface Product {
-  id: string;
-  image: any;
-  images: any;
-  price: string;
-  description: string;
-  variations: Variation[];
-  specifications: {
-    material: SpecificationTag[];
-    origin: SpecificationTag[];
-  };
-  deliveryOptions: DeliveryOption[];
-  rating: number;
-  reviews: Review[];
-  mostPopular: Product[];
-  youMightLike: Product[];
-}
 
 interface ProductDetailModalProps {
   visible: boolean;

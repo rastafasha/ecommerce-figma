@@ -1,8 +1,11 @@
 // Index.tsx
 
 import { CartModal } from '../components/CartModal';
+import { DiscountTabs } from '../components/DiscountTabs';
 import { FilterModal } from '../components/FilterModal';
+import { SaleSections } from '../components/SaleSections';
 
+import { products20Percent, shoeProducts } from '@/mock/products';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -24,9 +27,11 @@ import { ProductDetailModal } from '../components/ProductDetailModal';
 import { ProductGrid } from '../components/ProductGrid';
 import { SearchModal } from '../components/SearchModal';
 import { TimerDisplay } from '../components/TimerDisplay';
-import { FilterState } from '../interface/Interface';
+import { FilterState, Product } from '../interface/Interface';
 import { categoryOptions, colorOptions, sizeOptions, sortOptions } from '../mock/Options';
 import indexStyles from './styles/indexStyles';
+
+
 type RootStackParamList = {
   Home: undefined;
   FlashSale: undefined;
@@ -45,13 +50,15 @@ type IndexProps = {
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = (width - 40) / 2;
 
+
+
 const Index: React.FC<IndexProps> = ({ navigation }) => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 36, seconds: 58 });
   const [filterVisible, setFilterVisible] = useState(false);
 
   // New state for product detail modal
   const [productDetailVisible, setProductDetailVisible] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   // New state for search modal
   const [searchVisible, setSearchVisible] = useState(false);
@@ -61,9 +68,11 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
 
   const [activeTab, setActiveTab] = useState('Wishlist');
   
-    const handleTabPress = (tabName: string) => {
-      setActiveTab(tabName);
-    };
+  const [selectedDiscount, setSelectedDiscount] = useState('20%');
+
+  const handleTabPress = (tabName: string) => {
+    setActiveTab(tabName);
+  };
 
   // Filter state
   const [filters, setFilters] = useState<FilterState>({
@@ -215,11 +224,14 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
         <Text style={styles.subtitle}>Choose Your Discount</Text>
 
         {/* Discount filter */}
-        
+        <DiscountTabs 
+          selectedDiscount={selectedDiscount} 
+          onSelectDiscount={setSelectedDiscount} 
+        />
 
         {/* Section title with sort/filter */}
         <View style={styles.sectionTitleContainer}>
-          <Text style={styles.sectionTitle}>20% Discount </Text>
+          <Text style={styles.sectionTitle}>{selectedDiscount} Discount </Text>
           <TouchableOpacity onPress={openFilterDrawer}>
             <Ionicons name="options-outline" size={24} color="#000" />
           </TouchableOpacity>
@@ -228,7 +240,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
         {/* Product grid */}
         <ProductGrid 
           navigation={navigation} 
-          products={[]} // Replace with your actual products array
+          products={selectedDiscount === 'All' ? [...products20Percent, ...shoeProducts] : products20Percent.filter(p => p.discount === selectedDiscount)} 
           toggleFavorite={(productId: string) => {
             // Implement the toggleFavorite logic here
             console.log(`Toggled favorite for product: ${productId}`);
@@ -238,6 +250,22 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
             setProductDetailVisible(true);
           }}
         />
+
+        {/* Shoes product grid */}
+        <ProductGrid
+          navigation={navigation}
+          products={shoeProducts}
+          toggleFavorite={(productId: string) => {
+            console.log(`Toggled favorite for product: ${productId}`);
+          }}
+          onSelectProduct={(product) => {
+            setSelectedProduct(product);
+            setProductDetailVisible(true);
+          }}
+        />
+
+        {/* Sale sections */}
+        <SaleSections />
 
       </ScrollView>
 
