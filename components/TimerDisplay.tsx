@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import timerDisplayStyles from './styles/timerDisplayStyles';
 
 interface TimeLeft {
   hours: number;
@@ -38,34 +39,5 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = ({ timeLeft }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  curvedBackground: {
-    height: 120,
-    backgroundColor: '#0066FF',
-    borderBottomLeftRadius: 100,
-    borderBottomRightRadius: 100,
-    marginBottom: -40,
-    paddingTop: 10,
-    paddingRight: 20,
-    alignItems: 'flex-end',
-  },
-  timerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  timerBox: {
-    backgroundColor: 'white',
-    borderRadius: 8,
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 4,
-  },
-  timerText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
+const styles = StyleSheet.create(timerDisplayStyles);
 
-export default TimerDisplay;

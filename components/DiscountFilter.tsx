@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import discountFilterStyles from './styles/discountFilterStyle';
 
 export const DiscountFilter = () => {
   const [selectedDiscount, setSelectedDiscount] = useState('20%');
@@ -37,28 +38,4 @@ export const DiscountFilter = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  discountFilterContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  discountOption: {
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
-    marginRight: 10,
-  },
-  selectedDiscountOption: {
-    backgroundColor: '#007bff',
-  },
-  discountText: {
-    color: '#333',
-    fontWeight: 'bold',
-  },
-  selectedDiscountText: {
-    color: '#fff',
-  },
-});
-
-export default DiscountFilter;
+const styles = StyleSheet.create(discountFilterStyles);

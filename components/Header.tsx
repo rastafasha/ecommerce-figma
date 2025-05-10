@@ -1,7 +1,7 @@
 // Header.tsx
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import SearchModal from './SearchModal';
+import { SearchModal } from './SearchModal';
 
 import {
   Dimensions,
@@ -11,7 +11,8 @@ import {
   View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CartModal from './CartModal';
+import { CartModal } from './CartModal';
+import headerStyles from './styles/headerStyles';
 
 // Define the navigation type
 type RootStackParamList = {
@@ -77,32 +78,5 @@ export const Header: React.FC<HeaderProps> = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    height: 56,
-    borderBottomWidth: 0,
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  headerIcons: {
-    flexDirection: 'row',
-  },
-  iconButton: {
-    marginLeft: 16,
-  },
- 
- 
-});
+const styles = StyleSheet.create(headerStyles);
 
-export default Header;

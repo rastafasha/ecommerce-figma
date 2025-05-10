@@ -1,21 +1,28 @@
 import React from 'react';
 import {
-  Dimensions,
   FlatList,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import saleSelectionStyles from './styles/saleSelectionStyles';
 
-const { width } = Dimensions.get('window');
-const CARD_WIDTH = 100;
+
 
 const bigSaleImage = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80';
 
-const mostPopularData = [
+// Define the type for most popular items
+type MostPopularItem = {
+  id: string;
+  image: string;
+  label: string;
+  likes: number;
+};
+
+const mostPopularData: MostPopularItem[] = [
   {
     id: '1',
     image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=100&q=80',
@@ -60,7 +67,7 @@ const newArrivalsData = [
   },
 ];
 
-const SaleSections = () => {
+export const SaleSections = () => {
   const renderMostPopularItem = ({ item }) => (
     <View style={styles.popularItem}>
       <Image source={{ uri: item.image }} style={styles.popularImage} />
@@ -134,127 +141,5 @@ const SaleSections = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 16,
-    paddingHorizontal: 16,
-  },
-  bigSaleContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#F9C74F',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 24,
-    alignItems: 'center',
-  },
-  bigSaleTextContainer: {
-    flex: 1,
-  },
-  bigSaleTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  bigSaleSubtitle: {
-    fontSize: 16,
-    marginVertical: 8,
-    color: '#000',
-  },
-  bigSaleButton: {
-    backgroundColor: '#0066FF',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-    alignSelf: 'flex-start',
-  },
-  bigSaleButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  bigSaleImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 12,
-    marginLeft: 16,
-  },
-  mostPopularContainer: {
-    marginBottom: 24,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  seeAllText: {
-    color: '#0066FF',
-    fontWeight: 'bold',
-  },
-  popularList: {
-    paddingLeft: 4,
-  },
-  popularItem: {
-    width: CARD_WIDTH,
-    marginRight: 12,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  popularImage: {
-    width: CARD_WIDTH,
-    height: CARD_WIDTH,
-    borderRadius: 12,
-  },
-  popularLabelContainer: {
-    position: 'absolute',
-    top: 8,
-    left: 8,
-    backgroundColor: '#fff',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 12,
-  },
-  popularLabel: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  likesContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  likesText: {
-    marginLeft: 4,
-    color: '#0066FF',
-    fontWeight: 'bold',
-  },
-  newArrivalsContainer: {
-    marginBottom: 24,
-  },
-  newArrivalsList: {
-    paddingLeft: 4,
-  },
-  newArrivalItem: {
-    width: CARD_WIDTH,
-    marginRight: 12,
-    borderRadius: 12,
-    overflow: 'hidden',
-    alignItems: 'center',
-  },
-  newArrivalImage: {
-    width: CARD_WIDTH,
-    height: CARD_WIDTH,
-    borderRadius: 12,
-  },
-  newArrivalDescription: {
-    marginTop: 8,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-});
+const styles = StyleSheet.create(saleSelectionStyles);
 
-export default SaleSections;

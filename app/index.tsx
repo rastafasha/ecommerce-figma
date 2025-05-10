@@ -1,6 +1,8 @@
 // Index.tsx
-import ProductGrid from '@/components/ProductGrid';
-import { categoryOptions, colorOptions, sizeOptions, sortOptions } from '@/mock/Options';
+
+import { CartModal } from '../components/CartModal';
+import { FilterModal } from '../components/FilterModal';
+
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -17,16 +19,14 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Header } from '../components/Header';
+import { NavigationBar } from '../components/NavegationBar';
+import { ProductDetailModal } from '../components/ProductDetailModal';
+import { ProductGrid } from '../components/ProductGrid';
+import { SearchModal } from '../components/SearchModal';
 import { TimerDisplay } from '../components/TimerDisplay';
 import { FilterState } from '../interface/Interface';
-
-import BottomBar from '@/components/BottomBar';
-import CartModal from '@/components/CartModal';
-import FilterModal from '@/components/FilterModal';
-import ProductDetailModal from '@/components/ProductDetailModal';
-import SearchModal from '@/components/SearchModal';
+import { categoryOptions, colorOptions, sizeOptions, sortOptions } from '../mock/Options';
 import indexStyles from './styles/indexStyles';
-// Define the navigation type
 type RootStackParamList = {
   Home: undefined;
   FlashSale: undefined;
@@ -58,6 +58,12 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
 
   // New state for cart modal
   const [cartVisible, setCartVisible] = useState(false);
+
+  const [activeTab, setActiveTab] = useState('Wishlist');
+  
+    const handleTabPress = (tabName: string) => {
+      setActiveTab(tabName);
+    };
 
   // Filter state
   const [filters, setFilters] = useState<FilterState>({
@@ -191,7 +197,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
 
  
   return (
-    <SafeAreaView style={[styles.container, { paddingBottom: 80 }]}>
+    <SafeAreaView style={[styles.container, ]}>
       <StatusBar barStyle="dark-content" />
       
       {/* Header */}
@@ -236,7 +242,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
       </ScrollView>
 
       {/* Menu footer Sticky bottom filter/sort */}
-      <BottomBar />
+      <NavigationBar activeTab={activeTab} onTabPress={handleTabPress} />
 
       {/* Filter Modal */}
       <FilterModal 

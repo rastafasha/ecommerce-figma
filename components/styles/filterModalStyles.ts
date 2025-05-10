@@ -1,9 +1,10 @@
+
 import { Dimensions, StyleSheet } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 const CARD_WIDTH = (width - 40) / 2;
 
-const indexStyles = StyleSheet.create({
+const filterModalStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -37,7 +38,23 @@ const indexStyles = StyleSheet.create({
     paddingRight: 20,
     alignItems: 'flex-end',
   },
-  
+  timerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  timerBox: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 4,
+  },
+  timerText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   subtitle: {
     fontSize: 16,
     color: '#666',
@@ -420,4 +437,5 @@ const indexStyles = StyleSheet.create({
   },
 });
 
-export default indexStyles;
+
+export default filterModalStyles;

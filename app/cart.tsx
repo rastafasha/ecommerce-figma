@@ -1,82 +1,30 @@
-import BottomBar from '@/components/BottomBar';
+
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// import NavigationBar from '../components/NavegationBar';
+import { CartItem } from '@/interface/cartInterfase';
+import { sampleCartItems, sampleWishlistItems } from '@/mock/cartSample';
 import cartStyles from './styles/cartStyles';
 
-const { width } = Dimensions.get('window');
-
-interface CartItem {
-  id: string;
-  image: any;
-  description: string;
-  color: string;
-  size: string;
-  price: number;
-  quantity: number;
-}
-
-interface WishlistItem {
-  id: string;
-  image: any;
-  description: string;
-  price: number;
-  color: string;
-  size: string;
-}
-
-const sampleCartItems: CartItem[] = [
-  {
-    id: '1',
-    image: require('../assets/images/products/1.png'),
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    color: 'Pink',
-    size: 'M',
-    price: 17.0,
-    quantity: 1,
-  },
-  {
-    id: '2',
-    image: require('../assets/images/products/2.png'),
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    color: 'Pink',
-    size: 'M',
-    price: 17.0,
-    quantity: 1,
-  },
-];
-
-const sampleWishlistItems: WishlistItem[] = [
-  {
-    id: '1',
-    image: require('../assets/images/products/3.png'),
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    price: 17.0,
-    color: 'Pink',
-    size: 'M',
-  },
-  {
-    id: '2',
-    image: require('../assets/images/products/4.png'),
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    price: 17.0,
-    color: 'Pink',
-    size: 'M',
-  },
-];
 
 const CartPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>(sampleCartItems);
   const router = useRouter();
+
+  const [activeTab, setActiveTab] = useState('Wishlist');
+    
+      const handleTabPress = (tabName: string) => {
+        setActiveTab(tabName);
+      };
 
   const incrementQuantity = (id: string) => {
     setCartItems(prev =>
@@ -184,7 +132,7 @@ const CartPage: React.FC = () => {
           <Text style={styles.checkoutButtonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
-      <BottomBar/>
+      {/* <NavigationBar activeTab={activeTab} onTabPress={handleTabPress} /> */}
     </View>
   );
 };
