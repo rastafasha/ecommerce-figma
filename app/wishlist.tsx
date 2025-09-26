@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import {
   FlatList,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationBar } from './components/NavegationBar';
@@ -80,23 +79,31 @@ const Wishlist = () => {
         </TouchableOpacity>
       </View>
       
-      <ScrollView style={styles.container}>
-         <FlatList
-        data={recentlyViewed}
-        renderItem={renderRecentlyViewedItem}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.recentlyViewedList}
-      />
-        <FlatList
+      <FlatList
         data={wishlistItems}
         renderItem={renderWishlistItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         style={styles.wishlistList}
+        ListHeaderComponent={
+          <>
+            <View style={styles.recentlyViewedContainer}>
+              <Text style={styles.sectionTitle}>Recently viewed</Text>
+              <TouchableOpacity>
+                <Ionicons name="arrow-forward-circle" size={28} color="#0066FF" />
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={recentlyViewed}
+              renderItem={renderRecentlyViewedItem}
+              keyExtractor={(item) => item.id}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.recentlyViewedList}
+            />
+          </>
+        }
       />
-      </ScrollView>
       
       <NavigationBar activeTab={activeTab} onTabPress={handleTabPress} />
     </View>
