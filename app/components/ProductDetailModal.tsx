@@ -10,9 +10,10 @@ import {
   View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Product } from '../models/Product';
 import productModalStyles from './styles/productModalStyles';
 
-import { Product } from '../interface/Interface';
+// import { Product } from '../interface/Interface';
 
 const { width, height } = Dimensions.get('window');
 
@@ -56,7 +57,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             showsHorizontalScrollIndicator={false}
             style={styles.imageCarousel}
           >
-          {(Array.isArray(product.images) ? product.images : [product.image, product.image, product.image, product.image]).slice(0,4).map((img: any, index: number) => (
+          {(Array.isArray(product.img) ? product.img : [product.img, product.img, product.img, product.img]).slice(0,4).map((img: any, index: number) => (
               <Image
                 key={index}
                 source={img}
@@ -71,14 +72,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Price and share */}
             <View style={styles.priceShareContainer}>
-              <Text style={styles.priceText}>${product.price}</Text>
+              <Text style={styles.priceText}>${product.precio_ahora}</Text>
               <TouchableOpacity>
                 <Ionicons name="share-social-outline" size={24} color="#000" />
               </TouchableOpacity>
             </View>
 
             {/* Description */}
-            <Text style={styles.descriptionText}>{product.description}</Text>
+            <Text style={styles.descriptionText}>{product.detalle}</Text>
 
             {/* Variations */}
             <Text style={styles.sectionTitle}>Variations</Text>
@@ -95,7 +96,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {Array.isArray(product.variations) && product.variations.map((variation) => (
               <Image
                 key={variation.id}
-                source={product.image}
+                source={product.img}
                 style={styles.variationImage}
                 resizeMode="cover"
               />
@@ -208,7 +209,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.popularScroll}>
               {Array.isArray(product.mostPopular) && product.mostPopular.map((item) => (
                 <View key={item.id} style={styles.popularItem}>
-                  <Image source={item.image} style={styles.popularImage} />
+                  <Image source={item.img} style={styles.popularImage} />
                   <Text style={styles.popularText}>1780 ♥ New</Text>
                 </View>
               ))}
@@ -219,9 +220,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <View style={styles.youMightLikeContainer}>
               {Array.isArray(product.youMightLike) && product.youMightLike.map((item) => (
                 <View key={item.id} style={styles.youMightLikeItem}>
-                  <Image source={item.image} style={styles.youMightLikeImage} />
-                  <Text style={styles.youMightLikeDescription}>Lorem ipsum dolor sit amet consectetur</Text>
-                  <Text style={styles.youMightLikePrice}>${item.price}</Text>
+                  <Image source={item.img} style={styles.youMightLikeImage} />
+                  <Text style={styles.youMightLikeDescription}>{item.info_short}</Text>
+                  <Text style={styles.youMightLikePrice}>${item.precio_ahora}</Text>
                 </View>
               ))}
             </View>

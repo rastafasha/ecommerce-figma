@@ -1,11 +1,5 @@
 // Index.tsx
 
-import { CartModal } from './components/CartModal';
-import { DiscountTabs } from './components/DiscountTabs';
-import { FilterModal } from './components/FilterModal';
-import { SaleSections } from './components/SaleSections';
-
-import { products20Percent, shoeProducts } from '@/app/mock/products';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -21,14 +15,20 @@ import {
   View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { CartModal } from './components/CartModal';
+import { DiscountTabs } from './components/DiscountTabs';
+import { FilterModal } from './components/FilterModal';
 import { Header } from './components/Header';
 import { NavigationBar } from './components/NavegationBar';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { ProductGrid } from './components/ProductGrid';
+import { SaleSections } from './components/SaleSections';
 import { SearchModal } from './components/SearchModal';
 import { TimerDisplay } from './components/TimerDisplay';
-import { FilterState, Product } from './interface/Interface';
+import { FilterState } from './interface/Interface';
 import { categoryOptions, colorOptions, sizeOptions, sortOptions } from './mock/Options';
+import { Product } from './models/Product';
+import ProductoService from './services/products';
 import indexStyles from './styles/indexStyles';
 
 
@@ -69,6 +69,40 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState('Wishlist');
   
   const [selectedDiscount, setSelectedDiscount] = useState('20%');
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const mapProduct = (serviceProduct: any): Product => {
+    const precioAntes = parseFloat(serviceProduct.precio_antes) || serviceProduct.precio_ahora * 1.25;
+    const discountPercent = Math.round((1 - serviceProduct.precio_ahora / precioAntes) * 100);
+    const product = new Product(
+      serviceProduct._id,
+      serviceProduct.titulo,
+      serviceProduct.detalle || '',
+      serviceProduct.categoria ? String(serviceProduct.categoria) : 'Unknown',
+      serviceProduct.precio_ahora
+    );
+    product.precio_antes = precioAntes;
+    product.discount = `${discountPercent}%`;
+    product.img = serviceProduct.img ? { uri: serviceProduct.img } : require('../assets/images/products/1.png');
+    product.rating = 4.0;
+    product.isFavorite = false;
+    product.category = serviceProduct.categoria ? String(serviceProduct.categoria) : 'Unknown';
+    product.images = [];
+    product.price = serviceProduct.precio_ahora;
+    product.description = serviceProduct.detalle || '';
+    product.variations = [];
+    product.specifications = { material: [], origin: [] };
+    product.deliveryOptions = [];
+    product.reviews = [];
+    product.mostPopular = [];
+    product.youMightLike = [];
+    product.stock = serviceProduct.stock || 0;
+    product.sku = serviceProduct.slug || '';
+    return product;
+  };
 
   const handleTabPress = (tabName: string) => {
     setActiveTab(tabName);
@@ -127,8 +161,25 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
     return () => clearInterval(timer);
   }, []);
 
-  
-
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const data = await ProductoService.getProductsActivos();
+        const fetchedProducts = data || [];
+        const mappedProducts = fetchedProducts.map(mapProduct);
+        setProducts(mappedProducts);
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch products');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   // Open filter drawer
   const openFilterDrawer = () => {
@@ -217,6 +268,8 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
+        {loading && <Text style={{textAlign: 'center', marginVertical: 20}}>Loading products...</Text>}
+        {error && <Text style={{textAlign: 'center', marginVertical: 20, color: 'red'}}>{error}</Text>}
         {/* Blue curved background with timer */}
         <TimerDisplay timeLeft={timeLeft}></TimerDisplay>
 
@@ -238,9 +291,9 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
         </View>
 
         {/* Product grid */}
-        <ProductGrid 
-          navigation={navigation} 
-          products={selectedDiscount === 'All' ? [...products20Percent, ...shoeProducts] : products20Percent.filter(p => p.discount === selectedDiscount)} 
+        <ProductGrid
+          navigation={navigation}
+          products={loading ? [] : products.filter(p => p.discount === selectedDiscount || selectedDiscount === 'All')}
           toggleFavorite={(productId: string) => {
             // Implement the toggleFavorite logic here
             console.log(`Toggled favorite for product: ${productId}`);
@@ -254,7 +307,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
         {/* Shoes product grid */}
         <ProductGrid
           navigation={navigation}
-          products={shoeProducts}
+          products={loading ? [] : products.filter(p => p.category?.toLowerCase().includes('shoe') || p.category?.toLowerCase().includes('footwear'))}
           toggleFavorite={(productId: string) => {
             console.log(`Toggled favorite for product: ${productId}`);
           }}

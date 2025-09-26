@@ -145,3 +145,5 @@ export const CartModal: React.FC<CartModalProps> = ({ visible, onClose }) => {
 
 const styles = StyleSheet.create(cartModalStyles);
 
+export default CartModal;
+

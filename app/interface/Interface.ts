@@ -1,33 +1,7 @@
-export interface Product {
-  id: string;
-  image: any;
-  images: any;
-  price: number;
-  stock: number;
-  title: string;
-  description: string;
-  variations: Variation[];
-  specifications: {
-    material: SpecificationTag[];
-    origin: SpecificationTag[];
-  };
-  deliveryOptions: DeliveryOption[];
-  rating: number;
-  reviews: Review[];
-  mostPopular: Product[];
-  youMightLike: Product[];
-  isFavorite: boolean;
-  category: string;
-  discountedPrice: number;
-    originalPrice: number;
-    discount: string;
-    sku: string;
-
-}
+import { Product } from "../models/Product";
 
 
-  
-  export interface Variation {
+export interface Variation {
     id: string;
     label: string;
   }

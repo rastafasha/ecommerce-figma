@@ -1,6 +1,2 @@
-# Fix VirtualizedList Nesting Warning
-
-- [ ] Remove ScrollView wrapper from app/wishlist.tsx
-- [ ] Create ListHeaderComponent for wishlist FlatList containing recently viewed section
-- [ ] Update component structure to use FlatList as main container
-- [ ] Test scrolling functionality
+- [x] Update Product.ts constructor parameter category from any to string
+- [x] Update mapProduct in index.tsx to ensure category is always a string using String() or fallback

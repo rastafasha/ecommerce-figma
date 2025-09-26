@@ -12,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationBar } from './components/NavegationBar';
 import { recentlyViewed, wishlistItems } from './mock/wishlist';
 import wishlistStyles from './styles/wishlistStyles';
+
 const Wishlist = () => {
   
   const router = useRouter();
@@ -72,12 +73,7 @@ const Wishlist = () => {
                           <Text style={styles.headerTitle}>Wishlist</Text>
                           
                         </View>
-      <View style={styles.recentlyViewedContainer}>
-        <Text style={styles.sectionTitle}>Recently viewed</Text>
-        <TouchableOpacity>
-          <Ionicons name="arrow-forward-circle" size={28} color="#0066FF" />
-        </TouchableOpacity>
-      </View>
+      
       
       <FlatList
         data={wishlistItems}

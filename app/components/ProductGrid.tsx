@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Product } from '../interface/Interface';
+import { Product } from '../models/Product';
 import productGridStyles from './styles/productGridStyles';
 
 const { width } = Dimensions.get('window');
@@ -25,7 +25,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, navigation, 
             onPress={() => onSelectProduct(product)}
           >
             <Image 
-              source={product.image} 
+              source={product.img} 
               style={styles.productImage} 
               resizeMode="cover"
             />
@@ -47,11 +47,11 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, navigation, 
             onPress={() => onSelectProduct(product)}
           >
             <Text style={styles.productTitle} numberOfLines={2}>
-              {product.title}
+              {product.titulo}
             </Text>
             <View style={styles.priceContainer}>
-              <Text style={styles.discountedPrice}>${product.discountedPrice.toFixed(2)}</Text>
-              <Text style={styles.originalPrice}>${product.originalPrice.toFixed(2)}</Text>
+              <Text style={styles.discountedPrice}>${product.precio_ahora.toFixed(2)}</Text>
+              <Text style={styles.originalPrice}>${product.precio_antes.toFixed(2)}</Text>
             </View>
           </TouchableOpacity>
         </View>
