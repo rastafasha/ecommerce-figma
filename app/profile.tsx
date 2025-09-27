@@ -1,35 +1,39 @@
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    FlatList,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationBar } from './components/NavegationBar';
 import { SettingsModal } from './components/SettingsModal';
 import {
-    categories,
-    flashSaleItems,
-    justForYou,
-    mostPopular,
-    newItems,
-    ordersTabs,
-    recentlyViewed,
-    stories,
-    topProducts
+  flashSaleItems,
+  justForYou,
+  mostPopular,
+  newItems,
+  ordersTabs,
+  recentlyViewed,
+  stories,
+  topProducts
 } from './mock/profile';
+import { Categoria } from './models/categoria';
+import CategoryService from './services/category';
 import profileStyles from './styles/profileStyles';
-
 
 const Profile = () => {
   const router = useRouter();
   const [settingsModalVisible, setSettingsModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('Wishlist');
+
+  const [categories, setCategories] = useState<Categoria[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
   
     const handleTabPress = (tabName: string) => {
       setActiveTab(tabName);
@@ -70,7 +74,7 @@ const Profile = () => {
   const renderCategoryItem = ({ item }: { item: any }) => (
     <View style={styles.categoryItem}>
       <Image source={item.image} style={styles.categoryImage} />
-      <Text style={styles.categoryName}>{item.name}</Text>
+      <Text style={styles.categoryName}>{item.nombre}</Text>
       <Text style={styles.categoryCount}>{item.count}</Text>
     </View>
   );
@@ -97,6 +101,28 @@ const Profile = () => {
       <Text style={styles.justForYouPrice}>${item.price.toFixed(2)}</Text>
     </View>
   );
+
+   // Fetch categories on mount
+    useEffect(() => {
+    const fetchCategories = async () => {
+        try {
+          setLoading(true);
+          const data = await CategoryService.getCategoriesActivas();
+          const mappedCategories = data.map(c => new Categoria(c.icono, c.nombre, c.state_banner, c._id || '', c.subcategorias, c.img, c._id));
+          const uniqueCategories = mappedCategories.filter((cat, index, self) =>
+            index === self.findIndex(c => c.nombre === cat.nombre)
+          );
+          setCategories(uniqueCategories);
+          setError(null);
+        } catch (err) {
+          setError('Failed to fetch Categories');
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchCategories();
+    }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -220,7 +246,7 @@ const Profile = () => {
         <FlatList
           data={categories}
           renderItem={renderCategoryItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item._id || item.id}
           numColumns={3}
           style={styles.storiesList}
         />

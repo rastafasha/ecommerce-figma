@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { environment } from '../environment';
-import { Categoria } from '../models/categoria.model';
+import { Categoria } from '../models/categoria';
 
 class CategoryService {
   private baseUrl = environment.baseUrl;

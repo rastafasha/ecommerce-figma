@@ -5,8 +5,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
+  FlatList,
+  Image,
   PanResponder,
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -26,11 +27,13 @@ import { SaleSections } from './components/SaleSections';
 import { SearchModal } from './components/SearchModal';
 import { TimerDisplay } from './components/TimerDisplay';
 import { FilterState } from './interface/Interface';
-import { categoryOptions, colorOptions, sizeOptions, sortOptions } from './mock/Options';
+import { categoryOptions, colorOptions, sizeOptions, sortOptions, } from './mock/Options';
+import { Marca } from './models/marca';
 import { Product } from './models/Product';
+import MarcaService from './services/marca';
 import ProductoService from './services/products';
-import indexStyles from './styles/indexStyles';
 
+import indexStyles from './styles/indexStyles';
 
 type RootStackParamList = {
   Home: undefined;
@@ -71,6 +74,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
   const [selectedDiscount, setSelectedDiscount] = useState('20%');
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [marcas, setBrands] = useState<Marca[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -181,6 +185,25 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
     fetchProducts();
   }, []);
 
+  // Fetch brands on mount
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        setLoading(true);
+        const data = await MarcaService.getMarcas();
+        const mappedMarcas = data.map(m => new Marca(m.nombre, m.descripcion, m.img, m.slug, m._id!, m._id));
+        setBrands(mappedMarcas);
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch brands');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBrands();
+  }, []);
+
   // Open filter drawer
   const openFilterDrawer = () => {
     setFilterVisible(true);
@@ -255,9 +278,17 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
     });
   };
 
+  const renderMarcaItem = ({ item }: { item: Marca }) => (
+      <View style={styles.categoryItem}>
+        <Image source={{ uri: item.imagenUrl }} style={styles.categoryImage} />
+        <Text style={styles.categoryName}>{item.nombre}</Text>
+        {/* <Text style={styles.categoryCount}>{item.count}</Text> */}
+      </View>
+    );
+
  
   return (
-    <SafeAreaView style={{ flex: 1 }} >
+    <View style={{ flex: 1 }} >
       <StatusBar barStyle="dark-content" />
       
       {/* Header */}
@@ -303,6 +334,15 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
             setProductDetailVisible(true);
           }}
         />
+        {/* Shoes brands grid */}
+        <FlatList
+                      data={marcas}
+                      renderItem={renderMarcaItem}
+                      keyExtractor={(item) => item.id}
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      style={styles.recentlyViewedItem}
+                    />
 
         {/* Shoes product grid */}
         <ProductGrid
@@ -371,7 +411,7 @@ const Index: React.FC<IndexProps> = ({ navigation }) => {
         visible={cartVisible}
         onClose={() => setCartVisible(false)}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

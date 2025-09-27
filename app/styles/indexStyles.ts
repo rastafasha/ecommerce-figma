@@ -418,6 +418,21 @@ const indexStyles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  
+
+  recentlyViewedItem: {
+    marginRight: 12,
+    borderRadius: 30,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#fff',
+    height: 60,
+  },
+  recentlyViewedImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
 });
 
 export default indexStyles;
