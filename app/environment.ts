@@ -7,13 +7,13 @@ export { API_BASE_URL };
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000/api',
-  mediaUrl: 'http://localhost:3000/api/uploads/',
-  soketServer : 'http://localhost:3000',
+  // baseUrl: 'http://localhost:3000/api',
+  // mediaUrl: 'http://localhost:3000/api/uploads/',
+  // soketServer : 'http://localhost:3000',
   //remoto vercel
-  // baseUrl: 'https://back-ecomm-mall.vercel.app/api',
-  // soketServer : 'https://back-ecomm-mall.vercel.app/',
-  // mediaUrl: 'https://back-ecomm-mall.vercel.app/api/uploads/',
+  baseUrl: 'https://back-ecomm-mall.vercel.app/api',
+  soketServer : 'https://back-ecomm-mall.vercel.app/',
+  mediaUrl: 'https://back-ecomm-mall.vercel.app/api/uploads/',
   mediaUrlRemoto: 'https://res.cloudinary.com/dmv6aukai/image/upload/v1741218430/mallConnect',
   //pluggins
   rapidapiKey: 'a7036a3222mshc2920e679cd1cafp141e56jsn81cbe707ac15',
